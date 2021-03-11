@@ -7,10 +7,7 @@ export const ExpertisView = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
-    const [newUser, setNewUser] = useState<iCreateNewUser>({
-        username: 'Mowgli',
-        password: 'dsdsdd'
-    })
+    const [newUser, setNewUser] = useState<iCreateNewUser> ({username: '', password: '', age: 20})
 
     const create = async () => {
         try {
@@ -45,7 +42,8 @@ export const ExpertisView = () => {
         type="number" 
         name="age" 
         id="age" 
-        min={0}        
+        min={0} 
+        className='productInput'
         onChange={event => handleChange({age: parseInt(event.target.value)})}
         value={newUser.age}
       /><br />
