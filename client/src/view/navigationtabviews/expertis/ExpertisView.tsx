@@ -28,6 +28,10 @@ export const ExpertisView = () => {
         setUsers(response.data)
     }
 
+    const handleChange = (newState: iCreateNewUser) => {
+        setNewUser({...newUser, ...newState})
+      }
+
     useEffect(() => {
         fecthData()
     }, [loading])
@@ -37,7 +41,14 @@ export const ExpertisView = () => {
             <h1>BACKEND API</h1>
             <p>USERNAME</p><input onChange={(event) => setNewUser({...newUser, username: event.target.value})}/><br />
             <p>PASSWORD</p><input onChange={(event) => setNewUser({...newUser, password: event.target.value})} /><br />
-            <p>AGE</p><input /><br />
+            <p>AGE</p>    <input 
+        type="number" 
+        name="age" 
+        id="age" 
+        min={0}        
+        onChange={event => handleChange({age: parseInt(event.target.value)})}
+        value={newUser.age}
+      /><br />
             <button onClick={() => create()}>Create user</button><br />
             <hr />
             <h1>Displaying all users</h1>
