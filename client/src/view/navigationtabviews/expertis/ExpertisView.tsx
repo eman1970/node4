@@ -7,9 +7,10 @@ export const ExpertisView = () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [users, setUsers] = useState([])
     const [loading, setLoading] = useState(false)
-    const [newUser, setNewUser] = useState<iCreateNewUser> ({username: '', password: '', age: 20})
+    const [newUser, setNewUser] = useState<iCreateNewUser>({ username: '', password: ''})
 
     const create = async () => {
+      
         try {
             setLoading(true)
             await BackendAPIService.createUser(newUser)
@@ -24,10 +25,7 @@ export const ExpertisView = () => {
         const response = await BackendAPIService.getAllUsers()
         setUsers(response.data)
     }
-
-    const handleChange = (newState: iCreateNewUser) => {
-        setNewUser({...newUser, ...newState})
-      }
+     
 
     useEffect(() => {
         fecthData()
@@ -38,15 +36,9 @@ export const ExpertisView = () => {
             <h1>BACKEND API</h1>
             <p>USERNAME</p><input onChange={(event) => setNewUser({...newUser, username: event.target.value})}/><br />
             <p>PASSWORD</p><input onChange={(event) => setNewUser({...newUser, password: event.target.value})} /><br />
-            <p>AGE</p>    <input 
-        type="number" 
-        name="age" 
-        id="age" 
-        min={0} 
-        className='productInput'
-        onChange={event => handleChange({age: parseInt(event.target.value)})}
-        value={newUser.age}
-      /><br />
+            <p>AGE</p> <input type='number' onChange={(event) => setNewUser({...newUser, age: parseInt(event.target.value)})} />
+      
+         <br />
             <button onClick={() => create()}>Create user</button><br />
             <hr />
             <h1>Displaying all users</h1>
@@ -54,3 +46,7 @@ export const ExpertisView = () => {
         </div>
     );
 }
+function age(age: any) {
+    throw new Error('Function not implemented.');
+}
+
