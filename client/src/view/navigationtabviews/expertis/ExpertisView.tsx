@@ -46,7 +46,4 @@ export const ExpertisView = () => {
         </div>
     );
 }
-function age(age: any) {
-    throw new Error('Function not implemented.');
-}
-
+ 
